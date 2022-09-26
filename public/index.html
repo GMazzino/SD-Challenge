@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Soluciones Digitales B2C - Challenge</title>
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="frmContainer">
+        <div class="searchContainer">
+          <label for="search">Buscar cliente por DNI</label>
+          <input type="text" name="search" id="search" maxlength="8" />
+          <input type="button" value="Buscar" name="btnSearch" id="btnSearch" />
+        </div>
+        <form action="/clients" method="post" id="frmClient">
+          <fieldset>
+            <legend>Crear cliente</legend>
+            <label for="dni">DNI</label>
+            <input type="text" name="dni" maxlength="8" required />
+            <br />
+            <label for="name">Nombre</label>
+            <input type="text" name="name" maxlength="20" required />
+            <br />
+            <label for="lastName">Apellido</label>
+            <input type="text" name="lastName" maxlength="30" required />
+            <br />
+            <label for="sex">Sexo</label>
+            <input type="radio" name="sex" id="masc" value="masculino" />
+            <label for="masc">Masculino</label>
+            <input type="radio" name="sex" id="fem" value="femenino" />
+            <label for="fem">Femenino</label>
+            <br />
+            <label for="phone">Teléfono</label>
+            <input type="text" name="phone" maxlength="14" />
+            <br /><br /><br />
+            <input type="submit" value="Guardar" id="btnSubmit" />
+            <input type="button" value="Limpiar" class="btnCancel" id="btnCancel" />
+            <input type="button" value="Borrar" class="btnDelete" id="btnDelClient" hidden />
+          </fieldset>
+        </form>
+        <p id="res">&nbsp;</p>
+      </div>
+      <div class="tblContainer" id="tblContainer"></div>
+    </div>
+    <div class="underlay" id="confirmDlgBox">
+      <div class="dlgBox">
+        <img src="img/warn.png" alt="warning" />
+        <p>Desea borrar el cliente seleccionado?</p>
+        <div>
+          <input type="button" value="Borrar" class="btnDelete" id="btnDlgBoxDelete" />
+          <input type="button" value="Cancelar" class="btnCancel" id="btnDlgBoxCancel" />
+        </div>
+      </div>
+    </div>
+    <div class="underlay" id="msgDlgBox">
+      <div class="dlgBox">
+        <img src="img/ok.png" alt="OK" id="imgMsgDlgBox" />
+        <p id="msg"></p>
+        <div>
+          <input type="button" value="Cerrar" class="btnCancel" id="btnMsgClose" />
+        </div>
+      </div>
+    </div>
+    <script type="module" src="scripts/client.js"></script>
+  </body>
+</html>

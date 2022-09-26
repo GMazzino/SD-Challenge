@@ -1,0 +1,31 @@
+<h1>Listado de clientes</h1>
+<% if (clients.length > 0) { %>
+<table class="tblClients">
+  <thead>
+    <tr>
+      <th>DNI</th>
+      <th>Nombre</th>
+      <th>Apellido<span id="lastname"></span></th>
+      <th>Sexo</th>
+      <th>Teléfono</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% clients.forEach((client) => { %>
+  <tbody>
+    <tr>
+      <td><%= client.dni %></td>
+      <td><%= client.name %></td>
+      <td><%= client.lastname %></td>
+      <td><%= client.sex %></td>
+      <td><%= client.phone %></td>
+      <td><img src="./img/edit.png" alt="Edit" class="edit" /></td>
+      <td><img src="./img/trash.webp" alt="Trash" class="trash" id="<%= client.dni %>" /></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<% } else { %>
+<p>No se encontraron clientes</p>
+<% } %>
