@@ -60,7 +60,9 @@ La configuración se realiza en el módulo config.js y mediante variables de ent
 ##### Para iniciar la aplicación seguir los siguientes pasos
 
 - Clonar repositorio https://github.com/GMazzino/SD-Challenge.git
+
   **Ejecutar en terminal:**
+
 - npm init -y
 - npm install
 - npm run start (requiere servidor MongoBD local en modo desarrollo o conexión a Mongo Atlas).
