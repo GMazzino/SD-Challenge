@@ -1,7 +1,6 @@
 import { mongoose, clientsModel } from '../../models/db/mongo.js';
 import { mongoRemote } from '../../../config.js';
 import logger from '../../utils/logger.js';
-import { isArray } from 'util';
 
 class Clients {
   async #dbConnection() {
