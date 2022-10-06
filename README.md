@@ -46,11 +46,22 @@ En base a dicho listado, desarrollar una web app que permita:
 
 - Base de datos: MongoDb.
 - Backend: NodeJS.
-- Librerías: express, mongoose, ejs, winston.
+- Librerías: express, mongoose, ejs, winston, dotenv.
 - Frontend: HTML, CSS, Javascript.
 
-#### Inicio de apliacion
+#### Configuración de apliación
 
+La configuración se realiza en el módulo config.js y mediante variables de entorno de los archivos dev.env y prod.env para entornos de desarrollo y producción respectivamente.
+
+- APP_ENV (sólo config.js): Establece el entorno de trabajo de la aplicación (desarrollo ó producción)
 - Puerto de escucha: 8080 (predeterminado). Configurable en config.js (SERVER_PORT) o variable de entorno (PORT).
 - URL MongoDB: mongodb://127.0.0.1/clients (predeterminada)-. Configurable en config.js o variable de entorno (MONGO_URL).
-- npm run start (requiere servidor MongoBD o conexión a Mongo Atlas).
+
+##### Para iniciar la aplicación seguir los siguientes pasos
+
+- Clonar repositorio https://github.com/GMazzino/SD-Challenge.git
+  **Ejecutar en terminal:**
+- npm init -y
+- npm install
+- npm run start (requiere servidor MongoBD local en modo desarrollo o conexión a Mongo Atlas).
+- Desde cualquier navegador (preferentenemte Chrome o Edge) dirigirse a http://127.0.0.1:8080 (o el puerto de escucha configurado en la variable SERVER_PORT en config.js o variable de entorno)

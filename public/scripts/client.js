@@ -19,7 +19,7 @@ let msgDlgBox = document.querySelector('#msgDlgBox');
 let imgMsgDlgBox = document.querySelector('#imgMsgDlgBox');
 let sortOrderByLastname = 1;
 
-// wrOp: false: Create new client. true: Update client
+// wrOp (writeOperation). false: Creates new client. true: Updates client
 let wrOp = false;
 let clientToDelete = '';
 

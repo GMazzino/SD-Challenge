@@ -1,6 +1,7 @@
 import { mongoose, clientsModel } from '../../models/db/mongo.js';
 import { mongoRemote } from '../../../config.js';
 import logger from '../../utils/logger.js';
+import { isArray } from 'util';
 
 class Clients {
   async #dbConnection() {
@@ -18,14 +19,14 @@ class Clients {
   }
 
   async getAllClients(field, order) {
-    const db = await this.#dbConnection();
+    let db;
     try {
+      db = await this.#dbConnection();
       let clients = await clientsModel.find({}).sort(JSON.parse(`{"${field}":"${order}"}`));
       await db.close();
       return { status: 200, content: clients };
     } catch (err) {
       logger.error(`Module: dao/mongo/clients.js Method: getAllClients -> ${err}`);
-      await db.close();
       return {
         status: 500,
         content: `Server error: ${err.message}`,
@@ -34,8 +35,9 @@ class Clients {
   }
 
   async getClientByDNI(dni) {
-    const db = await this.#dbConnection();
+    let db;
     try {
+      db = await this.#dbConnection();
       let query = await clientsModel.findOne({ dni: dni });
       await db.close();
       if (query !== null) {
@@ -44,7 +46,6 @@ class Clients {
         return { status: 200, content: 'Cliente no encontrado' };
       }
     } catch (err) {
-      await db.close();
       logger.error(`Module: dao/mongo/clients.js Method: getClientByDNI -> ${err}`);
       return {
         status: 500,
@@ -54,8 +55,9 @@ class Clients {
   }
 
   async delClientByDNI(dni) {
-    const db = await this.#dbConnection();
+    let db;
     try {
+      db = await this.#dbConnection();
       let query = await clientsModel.findOneAndDelete({ dni: dni });
       await db.close();
       if (query !== null) {
@@ -64,7 +66,6 @@ class Clients {
         return { status: 200, content: 'Cliente no encontrado' };
       }
     } catch (err) {
-      await db.close();
       logger.error(`Module: dao/mongo/clients.js Method: delClientByDNI -> ${err}`);
       return {
         status: 500,
@@ -74,8 +75,9 @@ class Clients {
   }
 
   async addNewClient(newClient) {
-    const db = await this.#dbConnection();
+    let db;
     try {
+      db = await this.#dbConnection();
       const existingClient = await clientsModel.findOne({ dni: newClient.dni });
       if (!existingClient) {
         const createdClient = await clientsModel.create(newClient);
@@ -98,8 +100,9 @@ class Clients {
   }
 
   async updateClientByDNI(client) {
-    const db = await this.#dbConnection();
+    let db;
     try {
+      db = await this.#dbConnection();
       let query = await clientsModel.findOneAndUpdate(
         { dni: client.dni },
         { name: client.name, lastname: client.lastname, sex: client.sex, phone: client.phone }
@@ -111,7 +114,6 @@ class Clients {
         return { status: 200, content: 'No se pudo actualizar el cliente ya que no fue encontrado' };
       }
     } catch (err) {
-      await db.close();
       logger.error(`Module: dao/mongo/clients.js Method: updateClient -> ${err}`);
       return {
         status: 500,
